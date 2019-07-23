@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src='Chart.min.js'></script>
+    <link rel="stylesheet" class="css">
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+</head>
+
+<body>
+    <nav style="height: 4rem; padding: 2rem " align="center">
+
+
+        <a href="#bar">bar chart </a><br>
+        <a href="#radarid">radar chart</a><br>
+        <a href="#dou">doughnut chart </a><br>
+
+
+    </nav>
+    <div class="barchart" id="bar">
+        <canvas id="vBar" width="400" height="100"></canvas>
+        <script>
+            var randomN = function() {
+                return Math.round(Math.random() * 100);
+            };
+            var ctx = document.getElementById('vBar').getContext('2d');
+            var chart = new Chart(ctx, {
+                // The type of chart 
+                type: 'bar',
+
+                // The data for our dataset
+                data: {
+                    labels: ['A', 'B', 'C', 'D'],
+                    datasets: [{
+
+                        label: 'First dataset',
+                        backgroundColor: ['rgba(255,87,34,.5)', 'rgba(76,175,80,.5)', 'rgba(63,81,181,.5)', 'rgba(255,235,59,.5)'],
+                        borderColor: ['rgba(255,87,34,1)', 'rgba(76,175,80,1)', 'rgba(63,81,181,1)', 'rgba(255,235,59,1)'],
+                        data: [randomN(), randomN(), randomN(), randomN()],
+                        borderWidth: 2,
+                        gridline: true,
+                        hoverBackgroundColor: ['rgba(255,87,34,1)', 'rgba(76,175,80,1)', 'rgba(63,81,181,1)', 'rgba(255,235,59,1)'],
+                        hoverBorderWidth: 6
+
+
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    legend: {
+                        position: 'top'
+                    },
+                    scales: {
+                        ticks: {
+                            beginAtZero: true
+                        },
+                        xAxes: [{
+                            barPercentage: 1,
+                            barThickness: 80,
+                            stacked: true,
+                            maxBarLength: 12,
+                            minBarLength: 0,
+                            gridLines: {
+                                offsetGridLines: true
+                            }
+                        }],
+                        yAxes: [{
+                            stacked: true
+                        }]
+                    }
+                }
+            });
+
+            myChart.data.datasets[4].data[2] = 50;
+            myLineChart.update();
+        </script>
+    </div>
+    <hr>
+    <div class="radarchart" id="radarid">
+        <div style="height: 100px"></div>
+        <canvas id="radarchart" width="400" height="100"></canvas>
+        <script>
+            var ctx = document.getElementById('radarchart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['A', 'B', 'C', 'D'],
+                    datasets: [{
+                        label: 'My First dataset',
+                        backgroundColor: ['rgba(63,81,181,.5)'],
+                        borderColor: ['rgba(63,81,181,1)'],
+                        data: [randomN(), randomN(), randomN(), randomN()]
+                    }, {
+                        label: 'My First dataset',
+                        backgroundColor: ['rgba(76,175,80,.5)'],
+                        borderColor: ['rgba(76,175,80,1)'],
+                        data: [randomN(), randomN(), randomN(), randomN()]
+
+                    }]
+                },
+
+                // Configuration options go here
+                options: {
+                    scales: {
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }
+
+
+                }
+            });
+        </script>
+    </div>
+    <hr>
+    <div class="doughnutchart" id="dou">
+        <div style="height: 100px"></div>
+        <canvas id="pieChart" width="400" height="100"></canvas> //
+        <script>
+            var ctx = document.getElementById('pieChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['A', 'B', 'C', 'D'],
+                    datasets: [{
+                        label: 'My First dataset',
+                        backgroundColor: ['rgba(255,87,34,.5)', 'rgba(76,175,80,.5)', 'rgba(63,81,181,.5)', 'rgba(255,235,59,.5)'],
+                        borderColor: ['rgba(255,87,34,1)', 'rgba(76,175,80,1)', 'rgba(63,81,181,1)', 'rgba(255,235,59,1)'],
+                        data: [randomN(), randomN(), randomN(), randomN()]
+                    }, {
+                        label: 'My 2nd dataset',
+                        backgroundColor: ['rgba(255,87,34,.7)', 'rgba(76,175,80,.7)', 'rgba(63,81,181,.7)', 'rgba(255,235,59,.7)'],
+                        borderColor: ['rgba(255,87,34,1)', 'rgba(76,175,80,1)', 'rgba(63,81,181,1)', 'rgba(255,235,59,1)'],
+                        data: [randomN(), randomN(), randomN(), randomN()]
+                    }]
+
+
+
+                },
+
+                // Configuration options go here
+                options: {
+                    ticks: {
+                        beginAtZero: true
+                    },
+                    // rotation: -0.5 * Math.PI
+                    animation: {
+                        animateScale: true
+                    },
+                    cutoutPercentage: 35
+                }
+            });
+        </script>
+    </div>
+    <hr>
+</body>
+
+</html>
